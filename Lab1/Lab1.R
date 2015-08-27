@@ -17,7 +17,7 @@ var_height <- var(body$height) # var(body[,3])
 sqrt(var(body$weight))
 cor(body$height,body$weight)
 sqrt(var_height/nrow(body)) # key to Q6
-males_gr <- body[body$gender=="Male",]
+males_gr <- subset(body, gender=="Male") # or males_gr <- body[body$gender=="Male",]
 colnames(males_gr)
 mean(males_gr$height)
 # scatterplot
@@ -30,6 +30,5 @@ lr <- lm(weight~height,data=body)
 summary(lr)
 abline(lr)
 
-#save
-save.image(file='Lab1.RData')
+# if save, use save.image(file='Lab1.RData')
 
