@@ -57,4 +57,4 @@ slr.experiment(n.trials=5000,n.data.points=10,slope=0,alpha=.05)
 slr.experiment(n.trials=5000,n.data.points=50,slope=1,alpha=.05)
 
 # save
-save.image("Lab3.R")
+save.image("Lab3.RData")
