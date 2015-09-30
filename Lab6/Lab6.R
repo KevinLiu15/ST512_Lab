@@ -1,0 +1,28 @@
+# clean up 
+rm(list=ls())
+# set work directory
+setwd('//stat.ad.ncsu.edu/Redirect/zliu15/Desktop/ST Courses/ST512 Lab (TA)/')
+source("make.nls.plot.r")
+# read in 
+optics <- read.table('optics.txt', header=T)
+
+# Overview
+head(optics)
+unique(optics$x)
+
+# Initial values in nonlinear function
+plot(y~x,data=optics)
+range(optics$y) # 0; 2.8
+summary(lm(log(y)~x,data=optics)) # 0.8
+
+# Scatterplot
+make.nls.plot(th1=0,th2=2.8,th3=0.8) # Good initial values
+make.nls.plot(th1=1,th2=2.8,th3=0.8) # Bad ones
+# NLM
+nlm <- nls(y~th1+th2*exp(-th3*x),data=optics,start=list(th1=0,th2=2.8,th3=0.8))
+summary(nlm)
+co <- coef(nlm)
+make.nls.plot(th1=co[1],th2=co[2],th3=co[3])
+
+# Save
+save.image("Lab6.RData")
